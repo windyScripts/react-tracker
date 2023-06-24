@@ -3,18 +3,23 @@ import { useState } from 'react'
 import './ExpenseForm.css'
 
 function ExpenseForm(){
-    const [enteredTitle,setEnteredTitle] = useState('');
-    const [enteredAmount,setEnteredAmount] = useState(0);
-    const [enteredDate,setEnteredDate] = useState('');
+    const [userInput, setUserInput] = useState({
+        enteredTitle: '',
+        enteredAmount: '',
+        enteredDate: ''
+    });
     const titleChangeHandler = (event) => {
-        setEnteredTitle(event.target.value)
-        console.log(event.target.value);
+        setUserInput((prevState)=>{return {...prevState, enteredTitle: event.target.value}})
     }
     const amountChangeHandler = (event) => {
-        setEnteredAmount(event.target.value)
+        setUserInput((prevState)=>{return {...prevState,enteredAmount: event.target.value}})
     }
     const dateChangeHandler = (event) => {
-        setEnteredDate(event.target.value)
+        setUserInput((prevState)=>{return {...prevState,enteredDate:event.target.value}})
+    }
+    const formSubmitHandler = (event) => {
+        event.preventDefault();
+        console.log(userInput);
     }
     return (
         <form>
@@ -31,7 +36,7 @@ function ExpenseForm(){
                 <label htmlFor="date" >Enter date here.</label>
                 <input onChange={dateChangeHandler} id="date" type="date" min="2019-01-01" max="2022-12-31" />
                 </div>
-                <button>Add Expense</button>
+                <button onClick={formSubmitHandler}>Add Expense</button>
                 </div>
             </form>
             

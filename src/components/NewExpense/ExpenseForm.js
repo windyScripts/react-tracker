@@ -37,10 +37,10 @@ function ExpenseForm(props){
                 <label htmlFor="date" >Enter date here.</label>
                 <input value={userInput.date} onChange={dateChangeHandler} id="date" type="date" min="2019-01-01" max="2022-12-31" />
                 </div>
+                <button type="button" onClick={props.onCancel}>Cancel</button>
                 <button onClick={formSubmitHandler}>Add Expense</button>
                 </div>
-            </form>
-            
+            </form>  
     )
 }
 
